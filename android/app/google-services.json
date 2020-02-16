@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "982021660304",
+    "firebase_url": "https://flutter-book-taxi-app.firebaseio.com",
+    "project_id": "flutter-book-taxi-app",
+    "storage_bucket": "flutter-book-taxi-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982021660304:android:79b6aebbe07a2dbf7c4215",
+        "android_client_info": {
+          "package_name": "com.example.flutter_taxiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982021660304-ljcrfvu7hu94var3ic80prc8oqfjom4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmXykpj-f22jNbaGiOQdCWB1URXdqOsL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982021660304-ljcrfvu7hu94var3ic80prc8oqfjom4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
