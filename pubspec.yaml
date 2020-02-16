@@ -34,7 +34,28 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  assets:
+    - ic_car_red.png
+    - ic_car_green.png
+    - ic_user.png
+    - ic_lock.png
+    - ic_mail.png
+    - ic_phone.png
+    - ic_location_black.png
+    - ic_map_nav.png
+    - ic_notify.png
+    - ic_remove_x.png
+    - ic_menu.png
+    - ic_menu_help.png
+    - ic_menu_history.png
+    - ic_menu_logout.png
+    - ic_menu_notify.png
+    - ic_menu_percent.png
+    - ic_menu_user.png
+    - ic_pickup_hatchback.png
+    - ic_pickup_sedan.png
+    - ic_pickup_suv.png
+    - ic_pickup_van.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
