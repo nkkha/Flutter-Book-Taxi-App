@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_taxiapp/src/app.dart';
 import 'package:flutter_taxiapp/src/blocs/auth_bloc.dart';
 import 'package:flutter_taxiapp/src/resources/dialog/loading_dialog.dart';
 import 'package:flutter_taxiapp/src/resources/dialog/msg_dialog.dart';
