@@ -1,5 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_taxiapp/src/app.dart';
+import 'package:flutter_taxiapp/src/blocs/auth_bloc.dart';
+import 'package:flutter_taxiapp/src/resources/dialog/loading_dialog.dart';
+import 'package:flutter_taxiapp/src/resources/dialog/msg_dialog.dart';
+import 'package:flutter_taxiapp/src/resources/home_page.dart';
 import 'package:flutter_taxiapp/src/resources/register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -8,6 +13,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  AuthBloc authBloc = new AuthBloc();
+
+  TextEditingController _emailController = new TextEditingController();
+  TextEditingController _passController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +46,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 60, 0, 20),
                 child: TextField(
+                  controller: _emailController,
                   style: TextStyle(fontSize: 18, color: Colors.black),
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -45,13 +56,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     border: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Color(0xffCED0D2), width: 1),
+                      BorderSide(color: Color(0xffCED0D2), width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
                   ),
                 ),
               ),
               TextField(
+                controller: _passController,
                 style: TextStyle(fontSize: 18, color: Colors.black),
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -82,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                   width: double.infinity,
                   height: 52,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: _onLoginClicked,
                     child: Text(
                       'Log In',
                       style: TextStyle(color: Colors.white, fontSize: 18),
@@ -124,5 +136,20 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void _onLoginClicked() {
+    String email = _emailController.text;
+    String pass = _passController.text;
+
+    LoadingDialog.showLoadingDialog(context, 'Loading...');
+    authBloc.signIn(email, pass, () {
+      LoadingDialog.hideLoadingDialog(context);
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => HomePage()));
+    }, (msg) {
+      LoadingDialog.hideLoadingDialog(context);
+      MsgDialog.showMsgDialog(context, 'Sign In', msg);
+    });
   }
 }

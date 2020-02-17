@@ -46,8 +46,13 @@ class AuthBloc {
   }
 
   void signUp(String email, String pass, String name, String phone,
-      Function onSuccess) {
-    _firAuth.signUp(email, pass, name, phone, onSuccess);
+      Function onSuccess, Function(String) onRegisterError) {
+    _firAuth.signUp(email, pass, name, phone, onSuccess, onRegisterError);
+  }
+
+  void signIn(String email, String pass,
+      Function onSuccess, Function(String) onSignInError) {
+    _firAuth.signIn(email, pass, onSuccess, onSignInError);
   }
 
   void dispose() {
