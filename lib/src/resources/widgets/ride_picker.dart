@@ -1,30 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_taxiapp/src/model/place_item_res.dart';
+import 'package:flutter_taxiapp/src/resources/ride_picker_page.dart';
 
 class RidePicker extends StatefulWidget {
+  final Function(PlaceItemRes, bool) onSelected;
+  RidePicker(this.onSelected);
+
   @override
   _RidePickerState createState() => _RidePickerState();
 }
 
 class _RidePickerState extends State<RidePicker> {
+  PlaceItemRes fromAddress;
+  PlaceItemRes toAddress;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        boxShadow: [BoxShadow(
-          color: Color(0x88999999),
-          offset: Offset(0, 5),
-          blurRadius: 5,
-        ),
-      ]),
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x88999999),
+              offset: Offset(0, 5),
+              blurRadius: 5.0,
+            ),
+          ]),
       child: Column(
         children: <Widget>[
           Container(
             width: double.infinity,
             height: 50,
             child: FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => RidePickerPage(
+                        fromAddress == null ? "" : fromAddress.name,
+                            (place, isFrom) {
+                          widget.onSelected(place, isFrom);
+                          fromAddress = place;
+                          setState(() {});
+                        }, true)));
+              },
               child: SizedBox(
                 width: double.infinity,
                 height: double.infinity,
@@ -35,7 +53,7 @@ class _RidePickerState extends State<RidePicker> {
                       width: 40,
                       height: 50,
                       child: Center(
-                        child: Image.asset('ic_location_black.png'),
+                        child: Image.asset("ic_location_black.png"),
                       ),
                     ),
                     Positioned(
@@ -44,17 +62,18 @@ class _RidePickerState extends State<RidePicker> {
                       width: 40,
                       height: 50,
                       child: Center(
-                        child: Image.asset('ic_remove_x.png'),
+                        child: Image.asset("ic_remove_x.png"),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 40, right: 50),
                       child: Text(
-                        '30 Trần não, Phường Bình An, Q2, HCM',
+                        fromAddress == null ? "From" : fromAddress.name,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 18, color: Color(0xff323643)),
+                        style:
+                        TextStyle(fontSize: 16, color: Color(0xff323643)),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -64,7 +83,16 @@ class _RidePickerState extends State<RidePicker> {
             width: double.infinity,
             height: 50,
             child: FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        RidePickerPage(toAddress == null ? "" : toAddress.name,
+                                (place, isFrom) {
+                              widget.onSelected(place, isFrom);
+                              toAddress = place;
+                              setState(() {});
+                            }, false)));
+              },
               child: SizedBox(
                 width: double.infinity,
                 height: double.infinity,
@@ -75,7 +103,7 @@ class _RidePickerState extends State<RidePicker> {
                       width: 40,
                       height: 50,
                       child: Center(
-                        child: Image.asset('ic_map_nav.png'),
+                        child: Image.asset("ic_map_nav.png"),
                       ),
                     ),
                     Positioned(
@@ -84,17 +112,18 @@ class _RidePickerState extends State<RidePicker> {
                       width: 40,
                       height: 50,
                       child: Center(
-                        child: Image.asset('ic_remove_x.png'),
+                        child: Image.asset("ic_remove_x.png"),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 40, right: 50),
                       child: Text(
-                        'Home',
+                        toAddress == null ? "To" : toAddress.name,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 18, color: Color(0xff323643)),
+                        style:
+                        TextStyle(fontSize: 16, color: Color(0xff323643)),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

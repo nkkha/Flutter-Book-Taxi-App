@@ -124,6 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
               StreamBuilder(
                 stream: authBloc.passStream,
                 builder: (context, snapshot) => TextField(
+                  obscureText: true,
                   controller: _passController,
                   style: TextStyle(fontSize: 18, color: Colors.black),
                   decoration: InputDecoration(
